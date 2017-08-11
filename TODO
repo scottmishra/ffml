@@ -1,0 +1,35 @@
+To Setup the Postgres Database:
+- use the postgres docker file
+- connect and create the nfldb Database
+- set the user and password
+This will set up postgres server to be ready to accept data from nfldb
+
+To setup the nfldb-update command
+- Grab a python2.7 docker image
+- Install nfldb
+- create a config.ini that has the host:port, username, password for the postgres server
+- Run the nfldb-update command, this will connect to postgres and update with data from
+  nfl.com
+- catch the exception
+- add JAX to the Database
+- run the update
+- convert JAX to JAC
+- remove JAX
+    `insert into team values ('JAX','Jacksonville','Jaguars')`
+    `UPDATE play SET pos_team = 'JAC' WHERE pos_team = 'JAX'`
+    `DELETE FROM team WHERE team_id = 'JAX'`
+
+
+Setup the stats api
+- Development should probably be done using a virtual env   
+- python2.7 docker image
+- pip install requirements.txt (can be grabed from pip freeze > requirements.txt)
+- flask?
+- routes 
+
+Steps to fix the espnff
+- create virtual env
+- pip install espnff
+- edit the espnff.py file to set the trade dead line to 0,
+  since this causes an issue if it is null
+
