@@ -30,12 +30,18 @@ echo $SHARE_LOC
 ## Copy the config.ini to the nfldb share folder
 cp config.ini ${SHARE_LOC}
 ## get a zip of a current db 
-curl -LOk http://burntsushi.net/stuff/nfldb/nfldb.sql.zip
-unzip nfldb.sql.zip
+#curl -LOk http://burntsushi.net/stuff/nfldb/nfldb.sql.zip
+#unzip nfldb.sql.zip
 ## Create NFLDB
 python ./createDB.py
 
 # run nfldb-update
+nfldb-update
+
+# fixing jax error
+python ./updateJAX.py
+
+# rerun nfldb-update
 nfldb-update
 
 
