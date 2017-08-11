@@ -22,7 +22,13 @@ echo "Finished creating the docker container...you may need to run again if this
 ## Start python installation
 pip install -r requirement.txt
 ## Sleep until db comes up
-sleep 30
+#sleep 30
+SHARE_LOC=`which nfldb-update`
+SHARE_LOC=${SHARE_LOC%$"nfldb-update"}
+SHARE_LOC="${SHARE_LOC}../share/nfldb/"
+echo $SHARE_LOC
+## Copy the config.ini to the nfldb share folder
+cp config.ini ${SHARE_LOC}
 ## get a zip of a current db 
 curl -LOk http://burntsushi.net/stuff/nfldb/nfldb.sql.zip
 unzip nfldb.sql.zip
