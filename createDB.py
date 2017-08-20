@@ -6,7 +6,7 @@ default_db = "postgres"
 password = "pass"
 user = "postgres"
 
-conn = psycopg2.connect(dbname=default_db, password=password, user=user)
+conn = psycopg2.connect(host="localhost", port="5432",dbname=default_db, password=password, user=user)
 print conn
 conn.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
 cur = conn.cursor()
