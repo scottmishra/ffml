@@ -4,7 +4,7 @@
 
 # Before you start things you need installed:
 - Python version 2.7.13 is required
-- Docker is required and is helpful becuase the postgres setup sucksss
+- Docker is required and is helpful because the postgres setup sucksss
 - Have bash or bash emulator install (git bash will work on windows)
 - virtualenv are super helpful, and they are required for the setups
 
@@ -13,7 +13,7 @@
 - create a virtualenv
     - virtualenv <whatever you want>
 - source /path/to/virtualenv/<Script/bin>/activate (Script for windows, bin for linux/mac)
-- make sure the you set python 2.7.XX as the working versionss
+- make sure the you set python 2.7.XX as the working versions
 - run the setupNFLDB.sh script (./setupNFLDB.sh)
 - wait
 - wait

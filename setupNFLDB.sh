@@ -12,10 +12,11 @@
 # fi
 
 CONTAINER_NAME="nfl_db"
+mkdir -p ~/temp/postgres
+vol=`echo ~/temp/postgres`
 
-docker volume create nfl_db
 ## create container and mount file system for storage
-docker run --name "$CONTAINER_NAME" -p 5432:5432 --volume nfl_db:/var/lib/postgresql -e POSTGRES_PASSWORD=pass -d postgres:9.6-alpine
+docker run --name nfldb2 -p 5433:5432 -e PGDATA=/data -e POSTGRES_PASSWORD=pass -d scottmishra/nfldb2
 
 echo "Finished creating the docker container...you may need to run again if this takes a long time"
 
@@ -29,19 +30,7 @@ SHARE_LOC="${SHARE_LOC}../share/nfldb/"
 echo $SHARE_LOC
 ## Copy the config.ini to the nfldb share folder
 cp config.ini ${SHARE_LOC}
-## get a zip of a current db 
-#curl -LOk http://burntsushi.net/stuff/nfldb/nfldb.sql.zip
-#unzip nfldb.sql.zip
-## Create NFLDB
-python ./createDB.py
-
-# run nfldb-update
-nfldb-update
-
-# fixing jax error
-python ./updateJAX.py
-
-# rerun nfldb-update
+#update to the latest game data
 nfldb-update
 
 
