@@ -3,11 +3,10 @@ from flask_restful import Resource
 from app.database.database_wrapper import Utilities
 
 class player(Resource):
-    def get(self, name, position, year):
+    def get(self, name, year):
         util = Utilities(year)
         player = util.get_player(name)[0]
-        return {'name':player.player.full_name, 'height':player.player.height, 'weight':player.player.weight,
-                'years_pro': player.player.years_pro}
+        return make_player(player)
 
 class playersByPosition(Resource):
     def get(self, position, year):
@@ -18,3 +17,9 @@ class playersByPosition(Resource):
 class playersByYearOnly(Resource):
     def get(self, year):
         return[{'year': year}]
+
+
+def make_player(nfldb_player):
+    player = nfldb_player.player
+    return {'name':player.full_name, 'height': player.height, 'weight': player.weight,
+                'years_pro': player.years_pro}
