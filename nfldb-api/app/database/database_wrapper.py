@@ -14,6 +14,11 @@ class Utilities(object):
         player = self.query.player(full_name=name).as_aggregate()
         return player
 
+    def get_players(self, position):
+        self.query.game(season_year=self.year, season_type='Regular')
+        return_players = self.query.player(position=position).as_aggregate()
+        return return_players
+
     def get_rushers(self):
         self.query.game(season_year=self.year, season_type='Regular')
         players = self.query.sort('rushing_yds').limit(40).as_aggregate()
