@@ -28,5 +28,24 @@ class playersByYearOnly(Resource):
 
 def make_player(nfldb_player):
     player = nfldb_player.player
-    return {'name':player.full_name, 'height': player.height, 'weight': player.weight,
-                'years_pro': player.years_pro}
+    offensive_stats = {
+        'rushing': nfldb_player.rushing_yds,
+        'receiving': nfldb_player.receiving_yds,
+        'passing': nfldb_player.passing_yds,
+        'return': (nfldb_player.puntret_yds + nfldb_player.kickret_yds)
+    }
+    scoring_stats = {
+        'rushing':nfldb_player.rushing_tds,
+        'receiving': nfldb_player.receiving_tds,
+        'passing': nfldb_player.passing_tds,
+        'return': (nfldb_player.kickret_tds + nfldb_player.puntret_tds)
+    }
+    profile_stats = {'name':player.full_name, 'height': player.height, 'weight': player.weight, 'years_pro': player.years_pro};
+
+    total_stats = {
+        'player': player.full_name,
+        'offensive_stats': offensive_stats,
+        'scoring_stats': scoring_stats,
+        'profile': profile_stats
+    }
+    return total_stats
