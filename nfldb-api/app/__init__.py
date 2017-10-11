@@ -3,6 +3,7 @@ from flask_restful import Api
 
 from api.players import *
 from api.defenses import *
+
 app = Flask(__name__)
 app_api = Api(app)
 
