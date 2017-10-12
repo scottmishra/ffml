@@ -24,7 +24,19 @@ class playersByYearOnly(Resource):
     def get(self, year):
         return[{'year': year}]
 
+class playerNames(Resource):
+    def get(self, year, position):
+        util = Utilities(year)
+        players = []
+        for pp in util.get_players(position):
+            player_result = make_profiles(pp)
+            players.append(player_result)
+        return players
 
+def make_profiles(nfldb_player):
+    player = nfldb_player.player
+    profile_stats = {'name': player.full_name, 'height': player.height, 'weight': player.weight, 'years_pro': player.years_pro};
+    return profile_stats
 
 def make_player(nfldb_player):
     player = nfldb_player.player
